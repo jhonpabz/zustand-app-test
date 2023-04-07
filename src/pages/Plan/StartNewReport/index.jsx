@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Box } from '@mui/material';
 
 import TabPanels from './TabPanels/TabPanels';
+import GroupButtons from './components/Buttons/GroupButtons';
 
 const StartNewReport = () => {
   const [tabPanel, setTabPanel] = useState(0);
@@ -15,7 +16,9 @@ const StartNewReport = () => {
           alignItems: 'center',
           px: 2,
         }}
-      ></Box>
+      >
+        <GroupButtons tabValue={tabPanel} />
+      </Box>
       <TabPanels tabValue={tabPanel} />
     </>
   );
