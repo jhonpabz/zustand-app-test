@@ -1,14 +1,34 @@
 import { Button, Box } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useReportPersistStore } from '../../stores';
 
-const HeaderButtons = ({ backOnClick, nextOnClick, tabPanel, form }) => {
+const HeaderButtons = ({ form }) => {
+  const setTabPanel = useReportPersistStore((state) => state.setTabPanel);
+  const { tabPanel } = useReportPersistStore((state) => ({
+    tabPanel: state.tabPanel,
+  }));
+
+  const handleNext = () => {
+    if (tabPanel !== 4) {
+      setTabPanel(tabPanel + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (tabPanel !== 0) {
+      setTabPanel(tabPanel - 1);
+    }
+  };
+
+  console.log('tabPanel: ', tabPanel);
+
   return (
     <>
       <Box sx={{ display: 'flex' }}>
         {tabPanel !== 0 && (
           <Button
-            onClick={backOnClick}
+            onClick={handleBack}
             sx={{ px: 3, py: 1.5, mr: 2 }}
             startIcon={<ArrowBackIcon />}
             variant="faded"
@@ -20,7 +40,7 @@ const HeaderButtons = ({ backOnClick, nextOnClick, tabPanel, form }) => {
         <Button
           type="submit"
           form={form}
-          onClick={nextOnClick}
+          onClick={handleNext}
           sx={{ px: 3, py: 1.5 }}
           endIcon={tabPanel !== 4 && <ArrowForwardIcon />}
         >
