@@ -3,6 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { TabItems } from '../lib/TabItems/TabItems';
+import { useReportPersistStore } from '../stores';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -31,11 +32,15 @@ const a11yProps = (index) => {
   };
 };
 
-const TabPanels = ({ tabValue }) => {
+const TabPanels = () => {
+  const { tabPanel } = useReportPersistStore((state) => ({
+    tabPanel: state.tabPanel,
+  }));
+
   return (
     <Box sx={{ width: '100%', overflowY: 'auto' }}>
       <Box sx={{ borderTop: 0, borderColor: 'divider' }}>
-        <Tabs value={tabValue} aria-label="tax plan tabs" variant="fullWidth">
+        <Tabs value={tabPanel} aria-label="tax plan tabs" variant="fullWidth">
           {TabItems.map((item, index) => (
             <Tab
               key={index}
@@ -50,7 +55,7 @@ const TabPanels = ({ tabValue }) => {
         <TabPanel
           key={index}
           sx={{ width: '100%' }}
-          value={tabValue}
+          value={tabPanel}
           index={index}
         >
           {item.panel}

@@ -21,8 +21,6 @@ const HeaderButtons = ({ form }) => {
     }
   };
 
-  console.log('tabPanel: ', tabPanel);
-
   return (
     <>
       <Box sx={{ display: 'flex' }}>
