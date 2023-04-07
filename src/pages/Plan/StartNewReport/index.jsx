@@ -7,21 +7,11 @@ import PageHeader from '../../../components/PageHeader/PageHeader';
 import HeaderButtons from './components/Buttons/HeaderButtons';
 
 const StartNewReport = () => {
-  const [currentForm, setCurrentForm] = useState('client-info-form');
-
-  const handleSaveNextMain = () => {
-    console.log('Next');
-  };
-
-  const handleBack = () => {
-    console.log('Back');
-  };
-
   return (
     <>
       <PageHeader
         pageName="Estate Planning and Personal Asset Protection Advice"
-        headerButton={<HeaderButtons form={currentForm} tabPanel={tabPanel} />}
+        headerButton={<HeaderButtons />}
       />
       <Box
         sx={{
