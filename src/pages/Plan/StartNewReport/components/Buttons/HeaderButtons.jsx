@@ -5,7 +5,7 @@ import { useReportPersistUtilsStore } from '../../stores';
 import { useEffect } from 'react';
 import { saveAndNextLookup } from '../../lib/LookUps/saveAndNextLookup';
 
-const HeaderButtons = ({ form }) => {
+const HeaderButtons = () => {
   // Todo: form = currentForm
   const setTabPanel = useReportPersistUtilsStore((state) => state.setTabPanel);
   const setCurrentForm = useReportPersistUtilsStore(
@@ -77,7 +77,7 @@ const HeaderButtons = ({ form }) => {
         )}
         <Button
           type="submit"
-          form={form}
+          form={currentForm}
           onClick={handleNext}
           sx={{ px: 3, py: 1.5 }}
           endIcon={tabPanel !== 4 && <ArrowForwardIcon />}

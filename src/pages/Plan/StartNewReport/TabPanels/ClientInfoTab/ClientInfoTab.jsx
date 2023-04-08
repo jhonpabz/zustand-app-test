@@ -10,13 +10,13 @@ import AddButton from '@components/Buttons/AddButton';
 import RemoveButton from '@components/Buttons/RemoveButton';
 import FormLabelComponent from '../../components/FormLabelComponent/FormLabelComponent';
 
-import FormContainer from '@components/Forms/FormContainer/FormContainer';
 import CustomTopicField from './CustomTopicField/CustomTopicField';
-
-// import useStartNewReportStore from '../../stores/useStartNewReportStore';
+import { useReportPersistUtilsStore } from '../../stores';
+import FormContainer from '@components/Forms/FormContainer/FormContainer';
 
 const ClientInfoTab = () => {
   const newId = crypto.randomUUID();
+  const setIsSubmit = useReportPersistUtilsStore((state) => state.setIsSubmit);
 
   // const addClientInfoFormData = useStartNewReportStore(
   //   (state) => state.addClientInfoFormData
@@ -30,6 +30,9 @@ const ClientInfoTab = () => {
   } = useForm({});
 
   const onSubmit = (data) => {
+    console.log('Submit Data: ', data);
+    setIsSubmit('clientInfoForm', true);
+
     // addClientInfoFormData({ reportId: newId, clientGroupName, ...data });
     // setCurrentId(newId);
     // setCLientInfoData(data);
@@ -64,113 +67,107 @@ const ClientInfoTab = () => {
   };
 
   return (
-    <>
-      <PageWrapper>
-        <FormContainer id="client-info-form" onSubmit={handleSubmit(onSubmit)}>
-          <Box>
-            <Typography variant="h6" sx={{ fontWeight: '700' }}>
-              Contact Details
-            </Typography>
+    <PageWrapper>
+      <FormContainer id="client-info-form" onSubmit={handleSubmit(onSubmit)}>
+        <Box>
+          <Typography variant="h6" sx={{ fontWeight: '700' }}>
+            Contact Details
+          </Typography>
 
-            <Box sx={{ pl: 2.5 }}>
-              <Grid item xs={12}>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} md={6}>
-                    <TextFieldComponent
-                      control={control}
-                      label="Client Primary Contact Name"
-                      name="clientPrimaryContactName"
-                      required={true}
-                      errors={errors}
-                    />
-                    <TextFieldComponent
-                      control={control}
-                      label="Client Email"
-                      name="clientEmail"
-                      required={true}
-                      errors={errors}
-                    />
-                  </Grid>
-                  <Grid item xs={12} md={6}>
-                    <TextFieldComponent
-                      control={control}
-                      label="Casual Name"
-                      name="casualName"
-                      required={true}
-                      errors={errors}
-                    />
-                  </Grid>
+          <Box sx={{ pl: 2.5 }}>
+            <Grid item xs={12}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <TextFieldComponent
+                    control={control}
+                    label="Client Primary Contact Name"
+                    name="clientPrimaryContactName"
+                    required={true}
+                    errors={errors}
+                  />
+                  <TextFieldComponent
+                    control={control}
+                    label="Client Email"
+                    name="clientEmail"
+                    required={true}
+                    errors={errors}
+                  />
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <TextFieldComponent
+                    control={control}
+                    label="Casual Name"
+                    name="casualName"
+                    required={true}
+                    errors={errors}
+                  />
                 </Grid>
               </Grid>
-            </Box>
+            </Grid>
           </Box>
+        </Box>
+        <Box sx={{ pt: 2 }}>
+          <Typography variant="h6" sx={{ fontWeight: '700' }}>
+            Client Specific Objectives or Concerns
+          </Typography>
+          <Box sx={{ pl: 2.5 }}>
+            <FormLabelComponent>
+              From a general perspective, you would like to ensure that:
+            </FormLabelComponent>
 
-          <Box sx={{ pt: 2 }}>
-            <Typography variant="h6" sx={{ fontWeight: '700' }}>
-              Client Specific Objectives or Concerns
-            </Typography>
-            <Box sx={{ pl: 2.5 }}>
-              <FormLabelComponent>
-                From a general perspective, you would like to ensure that:
-              </FormLabelComponent>
+            <TextFieldComponent
+              control={control}
+              label="Your personal and business assets are protected for future generations"
+              name="protectedAssetsForFuture"
+              errors={errors}
+            />
+            <TextFieldComponent
+              control={control}
+              label="Your assets are protected from attack from their creditors, banckruptcy ir divorce, and"
+              name="protectedAssetsFromAttack"
+              errors={errors}
+            />
+            <TextFieldComponent
+              control={control}
+              label="Your assets that you pass to your children to your creditors, bankruptcy and divorce of their own children, in the most tax effective manner"
+              name="assetsThatYouCanPass"
+              errors={errors}
+            />
+            <FormLabelComponent>
+              Additionally, you have requested that we advise you about these
+              specific topics:
+            </FormLabelComponent>
 
-              <TextFieldComponent
-                control={control}
-                label="Your personal and business assets are protected for future generations"
-                name="protectedAssetsForFuture"
-                errors={errors}
-              />
-              <TextFieldComponent
-                control={control}
-                label="Your assets are protected from attack from their creditors, banckruptcy ir divorce, and"
-                name="protectedAssetsFromAttack"
-                errors={errors}
-              />
-              <TextFieldComponent
-                control={control}
-                label="Your assets that you pass to your children to your creditors, bankruptcy and divorce of their own children, in the most tax effective manner"
-                name="assetsThatYouCanPass"
-                errors={errors}
-              />
-              <FormLabelComponent>
-                Additionally, you have requested that we advise you about these
-                specific topics:
-              </FormLabelComponent>
+            {customTopicList.map((item, index) => {
+              return (
+                <Box
+                  key={index}
+                  sx={{ my: 1.5, display: 'flex', alignItems: 'center' }}
+                >
+                  <CustomTopicField
+                    control={control}
+                    name={`customTopic` + index}
+                    label="Custom Topic"
+                    errors={errors}
+                    required={true}
+                    handleChange={handleChange}
+                    index={index}
+                    item={item}
+                  />
 
-              {customTopicList.map((item, index) => {
-                return (
-                  <Box
-                    key={index}
-                    sx={{ my: 1.5, display: 'flex', alignItems: 'center' }}
-                  >
-                    <CustomTopicField
-                      control={control}
-                      name={`customTopic` + index}
-                      label="Custom Topic"
-                      errors={errors}
-                      required={true}
-                      handleChange={handleChange}
-                      index={index}
-                      item={item}
-                    />
-
-                    {customTopicList.length !== 1 && (
-                      <Box sx={{ ml: 2 }}>
-                        <RemoveButton
-                          onClick={() => handleRemoveInput(index)}
-                        />
-                      </Box>
-                    )}
-                  </Box>
-                );
-              })}
-              <AddButton onClick={handleAddInput} sx={{ mt: 2 }} />
-            </Box>
+                  {customTopicList.length !== 1 && (
+                    <Box sx={{ ml: 2 }}>
+                      <RemoveButton onClick={() => handleRemoveInput(index)} />
+                    </Box>
+                  )}
+                </Box>
+              );
+            })}
+            <AddButton onClick={handleAddInput} sx={{ mt: 2 }} />
           </Box>
-        </FormContainer>
-      </PageWrapper>
-    </>
+        </Box>
+      </FormContainer>
+    </PageWrapper>
   );
 };
-
 export default ClientInfoTab;

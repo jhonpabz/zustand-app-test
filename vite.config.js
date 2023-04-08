@@ -28,7 +28,7 @@ export default defineConfig({
       '@stores': path.resolve(_dirname, './src/stores'),
     },
   },
-  // build: {
-  //   outDir: './build',
-  // },
+  build: {
+    outDir: './build',
+  },
 });
