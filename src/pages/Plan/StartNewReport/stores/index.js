@@ -24,8 +24,6 @@ const startNewReportPersistStore = (set) => ({
     }));
   },
   setIsSubmit: (value, bool) => {
-    console.log('value', value);
-    console.log('bool', value === 'clientInfoForm');
     if (value === 'clientInfoForm') {
       set((state) => ({
         isSubmit: {

@@ -53,15 +53,6 @@ const HeaderButtons = ({ form }) => {
     handleNext();
   }, [isSubmit]);
 
-  //   console.log(isSubmit.clientInfoForm);
-  //   const currentFormToSubmit = lookUpResult.formSubmit;
-  //   console.log(currentFormToSubmit, 'currentFormToSubmit');
-  //   setCurrentForm(lookUpResult.form);
-  //   if (tabPanel !== 4) {
-  //     setTabPanel(lookUpResult.nextTab);
-  //   }
-  // };
-
   const handleBack = () => {
     if (tabPanel !== 0) {
       setTabPanel(tabPanel - 1);
