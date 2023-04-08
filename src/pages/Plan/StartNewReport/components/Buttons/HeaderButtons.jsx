@@ -8,29 +8,65 @@ import { saveAndNextLookup } from '../../lib/LookUps/saveAndNextLookup';
 const HeaderButtons = ({ form }) => {
   // Todo: form = currentForm
   const setTabPanel = useReportPersistStore((state) => state.setTabPanel);
-  const { tabPanel } = useReportPersistStore((state) => ({
-    tabPanel: state.tabPanel,
-  }));
+  const setCurrentForm = useReportPersistStore((state) => state.setCurrentForm);
+  const setIsSubmit = useReportPersistStore((state) => state.setIsSubmit);
+  const { tabPanel, currentForm, isSubmit } = useReportPersistStore(
+    (state) => ({
+      tabPanel: state.tabPanel,
+      currentForm: state.currentForm,
+      isSubmit: state.isSubmit,
+    })
+  );
 
   const lookUpResult = saveAndNextLookup(tabPanel);
 
   const handleNext = () => {
-    if (tabPanel !== 4) {
-      setTabPanel(lookUpResult.nextTab);
+    console.log('isSubmit: ', isSubmit);
+    switch (tabPanel) {
+      case 0:
+        if (isSubmit.clientInfoForm) {
+          setCurrentForm(lookUpResult.form);
+          setTabPanel(lookUpResult.nextTab);
+        }
+        break;
+      case 1:
+        if (isSubmit.successionAndWealthPlanForm) {
+          setCurrentForm(lookUpResult.form);
+          setTabPanel(lookUpResult.nextTab);
+        }
+        break;
+      case 2:
+        if (isSubmit.strategiesForm) {
+          setCurrentForm(lookUpResult.form);
+          setTabPanel(lookUpResult.nextTab);
+        }
+
+        break;
+      case 3:
+        if (isSubmit.coverLetterForm) {
+          setCurrentForm(lookUpResult.form);
+          setTabPanel(lookUpResult.nextTab);
+        }
     }
   };
+  useEffect(() => {
+    handleNext();
+  }, [isSubmit]);
+
+  //   console.log(isSubmit.clientInfoForm);
+  //   const currentFormToSubmit = lookUpResult.formSubmit;
+  //   console.log(currentFormToSubmit, 'currentFormToSubmit');
+  //   setCurrentForm(lookUpResult.form);
+  //   if (tabPanel !== 4) {
+  //     setTabPanel(lookUpResult.nextTab);
+  //   }
+  // };
 
   const handleBack = () => {
     if (tabPanel !== 0) {
       setTabPanel(tabPanel - 1);
     }
   };
-
-  useEffect(() => {
-    const result = saveAndNextLookup(tabPanel);
-    console.log('form: ', result.form);
-    console.log('nextTab: ', result.nextTab);
-  }, [tabPanel]);
 
   return (
     <>
