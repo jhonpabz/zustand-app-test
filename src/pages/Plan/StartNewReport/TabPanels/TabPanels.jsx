@@ -3,7 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { TabItems } from '../lib/TabItems/TabItems';
-import { useReportPersistStore } from '../stores';
+import { useReportPersistUtilsStore } from '../stores';
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -33,7 +33,7 @@ const a11yProps = (index) => {
 };
 
 const TabPanels = () => {
-  const { tabPanel } = useReportPersistStore((state) => ({
+  const { tabPanel } = useReportPersistUtilsStore((state) => ({
     tabPanel: state.tabPanel,
   }));
 

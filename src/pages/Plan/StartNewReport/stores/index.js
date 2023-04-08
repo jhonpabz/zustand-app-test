@@ -141,13 +141,13 @@ const startNewReportNotPersistStore = (set) => ({
   },
 });
 
-export const useReportStore = create(
+export const useReportUtilsStore = create(
   devtools(startNewReportNotPersistStore, {
     name: 'ReportUtils',
   })
 );
 
-export const useReportPersistStore = create(
+export const useReportPersistUtilsStore = create(
   devtools(
     persist(startNewReportPersistStore, {
       name: 'ReportPersistUtils',

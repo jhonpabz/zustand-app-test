@@ -1,16 +1,18 @@
 import { Button, Box } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { useReportPersistStore } from '../../stores';
+import { useReportPersistUtilsStore } from '../../stores';
 import { useEffect } from 'react';
 import { saveAndNextLookup } from '../../lib/LookUps/saveAndNextLookup';
 
 const HeaderButtons = ({ form }) => {
   // Todo: form = currentForm
-  const setTabPanel = useReportPersistStore((state) => state.setTabPanel);
-  const setCurrentForm = useReportPersistStore((state) => state.setCurrentForm);
-  const setIsSubmit = useReportPersistStore((state) => state.setIsSubmit);
-  const { tabPanel, currentForm, isSubmit } = useReportPersistStore(
+  const setTabPanel = useReportPersistUtilsStore((state) => state.setTabPanel);
+  const setCurrentForm = useReportPersistUtilsStore(
+    (state) => state.setCurrentForm
+  );
+  const setIsSubmit = useReportPersistUtilsStore((state) => state.setIsSubmit);
+  const { tabPanel, currentForm, isSubmit } = useReportPersistUtilsStore(
     (state) => ({
       tabPanel: state.tabPanel,
       currentForm: state.currentForm,

@@ -1,8 +1,8 @@
 import { Button, Box } from '@mui/material';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { useReportPersistStore } from '../../stores';
+import { useReportPersistUtilsStore } from '../../stores';
 const GroupButtons = () => {
-  const { tabPanel } = useReportPersistStore((state) => ({
+  const { tabPanel } = useReportPersistUtilsStore((state) => ({
     tabPanel: state.tabPanel,
   }));
 
