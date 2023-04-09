@@ -22,7 +22,7 @@ import StructureDropdown from './Components/Dropdowns/StructureDropdown';
 import DropdownComponent from '@components/Forms/Dropdown';
 import FormContainer from '@components/Forms/FormContainer/FormContainer';
 import FormLabelComponent from '../../components/FormLabelComponent/FormLabelComponent';
-
+import SuccessionAndWealthTransferPlanSchema from '../../lib/InputSchema/SuccessionAndWealth/SuccessionAndWealthTransferPlanSchema';
 import PreviewPlanModal from './Components/PreviewPlanModal/PreviewPlanModal';
 import useReportFormDataStore from '../../stores/useReportFormDataStore';
 import { useReportPersistUtilsStore } from '../../stores';
