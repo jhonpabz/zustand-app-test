@@ -1,26 +1,25 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
-import TextFieldComponent from '@components/Forms/TextField';
-
+import { Box, Typography, Grid } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
+
 import PageWrapper from '@components/PageWrapper';
 import AddButton from '@components/Buttons/AddButton';
 import RemoveButton from '@components/Buttons/RemoveButton';
 import FormLabelComponent from '../../components/FormLabelComponent/FormLabelComponent';
-
-import CustomTopicField from './CustomTopicField/CustomTopicField';
-import { useReportPersistUtilsStore } from '../../stores';
 import FormContainer from '@components/Forms/FormContainer/FormContainer';
+import CustomTopicField from './CustomTopicField/CustomTopicField';
+import TextFieldComponent from '@components/Forms/TextField';
+
+import { useReportPersistUtilsStore } from '../../stores';
+import useReportFormDataStore from '../../stores/useReportFormDataStore';
 
 const ClientInfoTab = () => {
   const newId = crypto.randomUUID();
   const setIsSubmit = useReportPersistUtilsStore((state) => state.setIsSubmit);
 
-  // const addClientInfoFormData = useStartNewReportStore(
-  //   (state) => state.addClientInfoFormData
-  // );
+  const addClientInfoFormData = useReportFormDataStore(
+    (state) => state.addClientInfoFormData
+  );
 
   const {
     control,
@@ -30,13 +29,8 @@ const ClientInfoTab = () => {
   } = useForm({});
 
   const onSubmit = (data) => {
-    console.log('Submit Data: ', data);
     setIsSubmit('clientInfoForm', true);
-
-    // addClientInfoFormData({ reportId: newId, clientGroupName, ...data });
-    // setCurrentId(newId);
-    // setCLientInfoData(data);
-    // setIsSubmit((prevState) => ({ ...prevState, clientInfoForm: true }));
+    addClientInfoFormData({ reportId: newId, ...data });
   };
 
   const [customTopicList, setCustomTopicList] = useState([

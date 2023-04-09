@@ -23,7 +23,6 @@ const HeaderButtons = () => {
   const lookUpResult = saveAndNextLookup(tabPanel);
 
   const handleNext = () => {
-    console.log('isSubmit: ', isSubmit);
     switch (tabPanel) {
       case 0:
         if (isSubmit.clientInfoForm) {
