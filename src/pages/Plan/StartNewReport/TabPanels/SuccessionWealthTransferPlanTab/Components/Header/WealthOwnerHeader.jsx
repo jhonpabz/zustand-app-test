@@ -12,7 +12,7 @@ const WealthOwnerHeader = ({ onClick, withRemove = false }) => {
           justifyContent: 'center',
           borderRadius: '5px',
           height: '40px',
-          background: secondary,
+          background: 'grey',
           width: '100%',
         }}
       >
@@ -20,7 +20,7 @@ const WealthOwnerHeader = ({ onClick, withRemove = false }) => {
           sx={{
             fontSize: '16px',
             fontWeight: '500',
-            color: light,
+            color: 'white',
           }}
         >
           Wealth Owner
