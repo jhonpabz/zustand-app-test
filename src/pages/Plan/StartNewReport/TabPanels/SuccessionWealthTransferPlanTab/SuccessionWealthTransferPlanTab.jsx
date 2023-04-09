@@ -25,7 +25,7 @@ import FormLabelComponent from '../../components/FormLabelComponent/FormLabelCom
 import { SuccessionAndWealthTransferPlanSchema } from '../../lib/InputSchema/SuccessionAndWealth/SuccessionAndWealthTransferPlanSchema.js';
 import PreviewPlanModal from './Components/PreviewPlanModal/PreviewPlanModal';
 import useReportFormDataStore from '../../stores/useReportFormDataStore';
-import { useReportPersistUtilsStore } from '../../stores';
+import { useReportPersistUtilsStore, useReportUtilsStore } from '../../stores';
 import { EntityOptions } from '../../lib/wealthOwnerForms';
 import useBoolean from '@hooks/utils/useBoolean';
 
@@ -34,6 +34,10 @@ const SuccessionWealthTransferPlanTab = () => {
   const updateSuccessionFormData = useReportFormDataStore(
     (state) => state.updateSuccessionFormData
   );
+
+  const { currentId } = useReportUtilsStore((state) => ({
+    currentId: state.currentId,
+  }));
 
   const { value: isDialogOpen, toggle: toggleDialog } = useBoolean(false);
   const {

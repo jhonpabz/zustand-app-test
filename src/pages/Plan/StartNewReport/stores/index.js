@@ -12,6 +12,7 @@ const startNewReportPersistStore = (set) => ({
     coverLetterForm: false,
     feeSummaryForm: true,
   },
+  currentId: '',
   setTabPanel: (panel) => {
     set((state) => ({
       tabPanel: panel,
@@ -68,6 +69,12 @@ const startNewReportPersistStore = (set) => ({
         },
       }));
     }
+  },
+
+  setCurrentId: (id) => {
+    set((state) => ({
+      currentId: id,
+    }));
   },
 });
 
@@ -81,6 +88,8 @@ const startNewReportNotPersistStore = (set) => ({
     coverLetterForm: false,
     feeSummaryForm: true,
   },
+  currentId: '',
+
   setTabPanel: (panel) => {
     set((state) => ({
       tabPanel: panel,
@@ -138,6 +147,12 @@ const startNewReportNotPersistStore = (set) => ({
         },
       }));
     }
+  },
+
+  setCurrentId: (id) => {
+    set((state) => ({
+      currentId: id,
+    }));
   },
 });
 

@@ -10,16 +10,21 @@ import FormContainer from '@components/Forms/FormContainer/FormContainer';
 import CustomTopicField from './CustomTopicField/CustomTopicField';
 import TextFieldComponent from '@components/Forms/TextField';
 
-import { useReportPersistUtilsStore } from '../../stores';
+import { useReportPersistUtilsStore, useReportUtilsStore } from '../../stores';
 import useReportFormDataStore from '../../stores/useReportFormDataStore';
 
 const ClientInfoTab = () => {
   const newId = crypto.randomUUID();
   const setIsSubmit = useReportPersistUtilsStore((state) => state.setIsSubmit);
+  const setCurrentId = useReportUtilsStore((state) => state.setCurrentId);
 
   const addClientInfoFormData = useReportFormDataStore(
     (state) => state.addClientInfoFormData
   );
+
+  const { currentId } = useReportUtilsStore((state) => ({
+    currentId: state.currentId,
+  }));
 
   const {
     control,
@@ -31,6 +36,7 @@ const ClientInfoTab = () => {
   const onSubmit = (data) => {
     setIsSubmit('clientInfoForm', true);
     addClientInfoFormData({ reportId: newId, ...data });
+    setCurrentId(newId);
   };
 
   const [customTopicList, setCustomTopicList] = useState([
@@ -38,6 +44,8 @@ const ClientInfoTab = () => {
       customTopic: '',
     },
   ]);
+
+  console.log('currentId:', currentId);
 
   const handleChange = (event, index) => {
     const { name, value } = event.target;
