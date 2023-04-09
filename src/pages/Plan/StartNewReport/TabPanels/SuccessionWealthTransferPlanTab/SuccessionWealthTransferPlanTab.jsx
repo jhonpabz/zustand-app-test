@@ -22,17 +22,20 @@ import StructureDropdown from './Components/Dropdowns/StructureDropdown';
 import DropdownComponent from '@components/Forms/Dropdown';
 import FormContainer from '@components/Forms/FormContainer/FormContainer';
 import FormLabelComponent from '../../components/FormLabelComponent/FormLabelComponent';
-import SuccessionAndWealthTransferPlanSchema from '../../lib/InputSchema/SuccessionAndWealth/SuccessionAndWealthTransferPlanSchema';
+import { SuccessionAndWealthTransferPlanSchema } from '../../lib/InputSchema/SuccessionAndWealth/SuccessionAndWealthTransferPlanSchema.js';
 import PreviewPlanModal from './Components/PreviewPlanModal/PreviewPlanModal';
 import useReportFormDataStore from '../../stores/useReportFormDataStore';
 import { useReportPersistUtilsStore } from '../../stores';
+import { EntityOptions } from '../../lib/wealthOwnerForms';
+import useBoolean from '@hooks/utils/useBoolean';
 
 const SuccessionWealthTransferPlanTab = () => {
-  // const { value: isDialogOpen, toggle: toggleDialog } = useBoolean(false);
   const setIsSubmit = useReportPersistUtilsStore((state) => state.setIsSubmit);
   const updateSuccessionFormData = useReportFormDataStore(
     (state) => state.updateSuccessionFormData
   );
+
+  const { value: isDialogOpen, toggle: toggleDialog } = useBoolean(false);
   const {
     control,
     formState: { errors },

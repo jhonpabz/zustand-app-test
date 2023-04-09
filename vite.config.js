@@ -22,7 +22,7 @@ export default defineConfig({
       // '@helper': path.resolve(_dirname, './src/helper'),
       // '@lib': path.resolve(_dirname, './src/lib'),
       '@pages': path.resolve(_dirname, './src/pages'),
-      // '@hooks': path.resolve(_dirname, './src/hooks'),
+      '@hooks': path.resolve(_dirname, './src/hooks'),
       // '@routes': path.resolve(_dirname, './src/routes'),
       // '@styles': path.resolve(_dirname, './src/styles'),
       '@stores': path.resolve(_dirname, './src/stores'),
