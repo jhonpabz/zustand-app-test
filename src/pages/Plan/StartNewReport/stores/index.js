@@ -32,36 +32,28 @@ const startNewReportPersistStore = (set) => ({
           clientInfoForm: bool,
         },
       }));
-    }
-
-    if (value === 'successionAndWealthPlanForm') {
+    } else if (value === 'successionAndWealthPlanForm') {
       set((state) => ({
         isSubmit: {
-          successionAndWealthPlanForm: bool,
           ...state.isSubmit,
+          successionAndWealthPlanForm: bool,
         },
       }));
-    }
-
-    if (value === 'strategiesForm') {
+    } else if (value === 'strategiesForm') {
       set((state) => ({
         isSubmit: {
           strategiesForm: bool,
           ...state.isSubmit,
         },
       }));
-    }
-
-    if (value === 'coverLetterForm') {
+    } else if (value === 'coverLetterForm') {
       set((state) => ({
         isSubmit: {
           coverLetterForm: bool,
           ...state.isSubmit,
         },
       }));
-    }
-
-    if (value === 'feeSummaryForm') {
+    } else if (value === 'feeSummaryForm') {
       set((state) => ({
         isSubmit: {
           feeSummaryForm: bool,
@@ -103,49 +95,46 @@ const startNewReportNotPersistStore = (set) => ({
   },
 
   setIsSubmit: (value, bool) => {
-    if (value === 'clientInfoForm') {
-      set((state) => ({
-        isSubmit: {
-          clientInfoForm: bool,
-          ...state.isSubmit,
-        },
-      }));
-    }
-
-    if (value === 'successionAndWealthPlanForm') {
-      set((state) => ({
-        isSubmit: {
-          successionAndWealthPlanForm: bool,
-          ...state.isSubmit,
-        },
-      }));
-    }
-
-    if (value === 'strategiesForm') {
-      set((state) => ({
-        isSubmit: {
-          strategiesForm: bool,
-          ...state.isSubmit,
-        },
-      }));
-    }
-
-    if (value === 'coverLetterForm') {
-      set((state) => ({
-        isSubmit: {
-          coverLetterForm: bool,
-          ...state.isSubmit,
-        },
-      }));
-    }
-
-    if (value === 'feeSummaryForm') {
-      set((state) => ({
-        isSubmit: {
-          feeSummaryForm: bool,
-          ...state.isSubmit,
-        },
-      }));
+    switch (value) {
+      case 'clientInfoForm':
+        set((state) => ({
+          isSubmit: {
+            clientInfoForm: bool,
+            ...state.isSubmit,
+          },
+        }));
+        break;
+      case 'successionAndWealthPlanForm':
+        set((state) => ({
+          isSubmit: {
+            successionAndWealthPlanForm: bool,
+            ...state.isSubmit,
+          },
+        }));
+        break;
+      case 'strategiesForm':
+        set((state) => ({
+          isSubmit: {
+            strategiesForm: bool,
+            ...state.isSubmit,
+          },
+        }));
+        break;
+      case 'coverLetterForm':
+        set((state) => ({
+          isSubmit: {
+            coverLetterForm: bool,
+            ...state.isSubmit,
+          },
+        }));
+        break;
+      case 'coverLetterForm':
+        set((state) => ({
+          isSubmit: {
+            feeSummaryForm: bool,
+            ...state.isSubmit,
+          },
+        }));
     }
   },
 

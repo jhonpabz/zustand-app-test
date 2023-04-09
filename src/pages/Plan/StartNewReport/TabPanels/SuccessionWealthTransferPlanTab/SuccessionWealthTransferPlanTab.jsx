@@ -68,7 +68,8 @@ const SuccessionWealthTransferPlanTab = () => {
   ]);
 
   const onSubmit = (data) => {
-    setIsSubmit('clientInfoForm', true);
+    console.log('Submitted', data);
+    setIsSubmit('successionAndWealthPlanForm', true);
     updateSuccessionFormData({ reportId: currentId, ...data });
   };
 
