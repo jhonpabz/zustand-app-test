@@ -1,6 +1,6 @@
 import { Stack, Table, TableContainer } from '@mui/material';
 
-import HeaderTextComponent from '@pages/EstatePlan/PresenterMode/components/Letter/HeaderText/HeaderTextComponent';
+import HeaderTextComponent from '../components/Letter/HeaderText/HeaderTextComponent';
 
 import { TableHead, TableBody } from '../components';
 

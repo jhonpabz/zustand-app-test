@@ -1,7 +1,7 @@
 import { Stack } from '@mui/material';
 
-import TitleTextComponent from '@pages/EstatePlan/PresenterMode/components/Letter/TitleText/TitleTextComponent';
-import BodyTextComponent from '@pages/EstatePlan/PresenterMode/components/Letter/BodyText/BodyTextComponent';
+import TitleTextComponent from '../components/Letter/TitleText/TitleTextComponent';
+import BodyTextComponent from '../components/Letter/BodyText/BodyTextComponent';
 
 export const Header = () => {
   return (

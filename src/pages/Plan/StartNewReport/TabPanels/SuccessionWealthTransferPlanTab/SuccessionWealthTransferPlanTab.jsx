@@ -8,7 +8,7 @@ import {
   TextField,
   Divider,
 } from '@mui/material';
-import { ArrowForwardIcon } from '@mui/icons-material';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,9 +18,10 @@ import WealthTransferPlanWrapper from './Components/Wrapper/WealthTransferPlanWr
 import WealthOwnerHeader from './Components/Header/WealthOwnerHeader';
 import DropdownLabelWrapper from './Components/Wrapper/DropdownLabelWrapper';
 import StructureDropdown from './Components/Dropdowns/StructureDropdown';
-import FormLabelComponent from '@components/Pages/EstatePlan/StartNewReport/Form/FormLabelComponent';
+
 import DropdownComponent from '@components/Forms/Dropdown';
 import FormContainer from '@components/Forms/FormContainer/FormContainer';
+import FormLabelComponent from '../../components/FormLabelComponent/FormLabelComponent';
 
 import PreviewPlanModal from './Components/PreviewPlanModal/PreviewPlanModal';
 import useReportFormDataStore from '../../stores/useReportFormDataStore';

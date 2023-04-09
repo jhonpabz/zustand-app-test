@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Box, FormControl, InputLabel, Select } from '@mui/material';
 import CheckedMenuItem from '@components/Select/CheckedMenuItem';
-import { structureList } from '@lib/Pages/EstatePlanning/StartNewReport/SuccessionWealthTransferPlan/wealthOwnerForm';
+import { structureList } from '../../../../lib/wealthOwnerForms';
 
 const inputLabelId = 'structure-label';
 const selectId = 'structure-select';

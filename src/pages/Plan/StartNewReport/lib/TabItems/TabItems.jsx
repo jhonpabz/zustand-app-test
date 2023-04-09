@@ -1,4 +1,5 @@
 import ClientInfoTab from '../../TabPanels/ClientInfoTab/ClientInfoTab';
+import SuccessionWealthTransferPlanTab from '../../TabPanels/SuccessionWealthTransferPlanTab/SuccessionWealthTransferPlanTab';
 
 export const TabItems = [
   {
@@ -7,7 +8,7 @@ export const TabItems = [
   },
   {
     label: 'Succession + Wealth Transfer Plan',
-    panel: <ClientInfoTab />,
+    panel: <SuccessionWealthTransferPlanTab />,
   },
   {
     label: 'Select Strategies',

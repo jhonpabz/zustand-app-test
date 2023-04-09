@@ -1,14 +1,8 @@
 import { Box, Typography } from '@mui/material';
-import useThemeContext from '@hooks/context/useThemeContext';
+
 import RemoveButton from '@components/Buttons/RemoveButton';
 
 const WealthOwnerHeader = ({ onClick, withRemove = false }) => {
-  const {
-    themeColors: {
-      baseColors: { secondary, light },
-    },
-  } = useThemeContext();
-
   return (
     <Box sx={{ display: 'flex' }}>
       <Box
