@@ -5,6 +5,7 @@ import LoadSavedReport from '@pages/Plan/LoadSavedReport';
 function App() {
   return (
     <Fragment>
+      <StartNewReport />
       <LoadSavedReport />
     </Fragment>
   );
