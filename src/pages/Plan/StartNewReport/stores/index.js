@@ -81,6 +81,7 @@ const startNewReportNotPersistStore = (set) => ({
     feeSummaryForm: true,
   },
   currentId: '',
+  isFormModified: false,
 
   setTabPanel: (panel) => {
     set((state) => ({
@@ -141,6 +142,12 @@ const startNewReportNotPersistStore = (set) => ({
   setCurrentId: (id) => {
     set((state) => ({
       currentId: id,
+    }));
+  },
+
+  setIsFormModified: (bool) => {
+    set((state) => ({
+      isFormModified: bool,
     }));
   },
 });

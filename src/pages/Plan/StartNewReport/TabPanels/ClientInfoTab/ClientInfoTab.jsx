@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -19,6 +19,9 @@ const ClientInfoTab = () => {
   const newId = crypto.randomUUID();
   const setIsSubmit = useReportPersistUtilsStore((state) => state.setIsSubmit);
   const setCurrentId = useReportUtilsStore((state) => state.setCurrentId);
+  const setIsFormModified = useReportUtilsStore(
+    (state) => state.setIsFormModified
+  );
 
   const addClientInfoFormData = useReportFormDataStore(
     (state) => state.addClientInfoFormData
@@ -46,7 +49,10 @@ const ClientInfoTab = () => {
     },
   });
 
-  console.log('isDirty', isDirty);
+  useEffect(() => {
+    setIsFormModified(isDirty);
+    console.log('isDirty', isDirty);
+  }, [isDirty]);
 
   const onSubmit = (data) => {
     setIsSubmit('clientInfoForm', true);

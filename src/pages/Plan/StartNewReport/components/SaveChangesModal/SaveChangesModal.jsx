@@ -11,6 +11,7 @@ import {
 import LoadingButton from '@mui/lab/LoadingButton';
 
 import DialogTitle from '@components/Dialog/DialogTitle';
+import { useReportUtilsStore } from '../../stores';
 
 export const SaveChangesModal = ({ id, open, onClose }) => {
   const dialogRef = useRef(null);
@@ -21,7 +22,10 @@ export const SaveChangesModal = ({ id, open, onClose }) => {
 
   // test
 
-  const [isFormModified, setIsFormModified] = useState(true);
+  const { isFormModified } = useReportUtilsStore((state) => ({
+    isFormModified: state.isFormModified,
+  }));
+
   useEffect(() => {
     const handler = (event) => {
       event.preventDefault();
