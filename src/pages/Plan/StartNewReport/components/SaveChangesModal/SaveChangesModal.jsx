@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 import {
   Button,
@@ -18,6 +18,27 @@ export const SaveChangesModal = ({ id, open, onClose }) => {
   const handleSubmit = () => {
     alert('Form saved Succesfully!');
   };
+
+  // test
+
+  const [isFormModified, setIsFormModified] = useState(true);
+  useEffect(() => {
+    const handler = (event) => {
+      event.preventDefault();
+      event.returnValue = '';
+    };
+
+    // if the form is NOT unchanged, then set the onbeforeunload
+    if (isFormModified) {
+      window.addEventListener('beforeunload', handler);
+      // clean it up, if the dirty state changes
+      return () => {
+        window.removeEventListener('beforeunload', handler);
+      };
+    }
+    // since this is not dirty, don't do anything
+    return () => {};
+  }, [isFormModified]);
 
   return (
     <Dialog
