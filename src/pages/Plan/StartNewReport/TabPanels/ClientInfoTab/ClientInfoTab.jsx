@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Box, Typography, Grid } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import PageWrapper from '@components/PageWrapper';
 import AddButton from '@components/Buttons/AddButton';
@@ -12,6 +13,7 @@ import TextFieldComponent from '@components/Forms/TextField';
 
 import { useReportPersistUtilsStore, useReportUtilsStore } from '../../stores';
 import useReportFormDataStore from '../../stores/useReportFormDataStore';
+import { clientInfoSchema } from '../../lib/InputSchema/ClientInfo/clientInfoSchema';
 
 const ClientInfoTab = () => {
   const newId = crypto.randomUUID();
@@ -28,10 +30,23 @@ const ClientInfoTab = () => {
 
   const {
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
     handleSubmit,
     // reset,
-  } = useForm({});
+  } = useForm({
+    resolver: yupResolver(clientInfoSchema),
+    defaultValues: {
+      clientPrimaryContactName: '',
+      casualName: '',
+      clientEmail: '',
+      protectedAssetsForFuture: '',
+      protectedAssetsFromAttack: '',
+      assetsThatYouCanPass: '',
+      // customTopic: '',
+    },
+  });
+
+  console.log('isDirty', isDirty);
 
   const onSubmit = (data) => {
     setIsSubmit('clientInfoForm', true);
@@ -44,8 +59,6 @@ const ClientInfoTab = () => {
       customTopic: '',
     },
   ]);
-
-  console.log('currentId:', currentId);
 
   const handleChange = (event, index) => {
     const { name, value } = event.target;
