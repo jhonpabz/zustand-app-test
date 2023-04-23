@@ -13,6 +13,9 @@ import { Title, Dialog, DialogTitle, DialogContent } from './Reusable';
 import { tabPropsLookup } from './lib';
 import { useSmsfForm } from './hooks';
 
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+
 const Smsf = ({
   data = {
     abn: 'test',
@@ -72,12 +75,22 @@ const Smsf = ({
     };
   });
 
+  const useAddSmsfEntityMutation = useMutation({
+    mutationFn: async (formData) => {
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+      return await axios.post(baseUrl + '/api/smsf-details', formData);
+    },
+    onSuccess: () => {
+      console.log('SMSF Entity is successfully created.');
+    },
+  });
+
   const handleSubmit = () => {
     formHook.handleSubmit((data) => {
-      console.log('data: ', data);
       const _dataForUpdate = { ...rootData, ...data };
       console.log('_dataForUpdate: ', _dataForUpdate);
-      // TODO: Mutation function here
+      // Mutation function here
+      useAddSmsfEntityMutation.mutate(_dataForUpdate);
     })();
   };
   return (
