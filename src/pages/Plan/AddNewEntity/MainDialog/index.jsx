@@ -1,9 +1,14 @@
 import { useRef } from 'react';
 
-import { Dialog, Typography } from '@mui/material';
+import { Dialog, Typography, Box } from '@mui/material';
+import { useEntityTypeStore } from '../stores';
+import EntityTypeDropdown from '../components/EntityTypeDropdown';
 
 const MainDialog = ({ open, onClose }) => {
   const dialogRef = useRef(null);
+  const { selectedType } = useEntityTypeStore((state) => ({
+    selectedType: state.selectedType,
+  }));
 
   return (
     <Dialog
@@ -13,7 +18,10 @@ const MainDialog = ({ open, onClose }) => {
       open={open}
       onClose={onClose}
     >
-      <Typography>Add New Entity</Typography>
+      <Box p={5}>
+        <EntityTypeDropdown />
+        <Typography>Add New Entity</Typography>
+      </Box>
     </Dialog>
   );
 };

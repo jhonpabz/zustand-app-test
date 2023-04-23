@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { devtools, persist } from 'zustand/middleware';
+import { devtools } from 'zustand/middleware';
 
 const selectedEntityType = (set) => ({
   selectedType: undefined,
@@ -13,9 +13,7 @@ const selectedEntityType = (set) => ({
 });
 
 export const useEntityTypeStore = create(
-  devtools(
-    persist(selectedEntityType, {
-      name: 'SelectedEntityType',
-    })
-  )
+  devtools(selectedEntityType, {
+    name: 'SelectedEntityType',
+  })
 );
