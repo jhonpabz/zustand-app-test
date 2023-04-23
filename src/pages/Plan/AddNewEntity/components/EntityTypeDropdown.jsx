@@ -6,11 +6,11 @@ import { useEntityTypeStore } from '../stores/index';
 const list = [
   {
     label: 'Individual (Family Member)',
-    value: 'individual-family-member',
+    value: 'individual_family_member',
   },
   {
     label: 'Individual (Not Related)',
-    value: 'individual-not-related',
+    value: 'individual_not_related',
   },
   {
     label: 'Company',
