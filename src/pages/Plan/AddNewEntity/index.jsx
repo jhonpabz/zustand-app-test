@@ -1,6 +1,7 @@
 import { Fragment, useState } from 'react';
 import { Button, Box } from '@mui/material';
-import MainDialog from './components/Dialog/MainDialog';
+import MainDialog from './MainDialog';
+import EntityTypeDropdown from './components/EntityTypeDropdown';
 
 const AddNewEntity = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +13,11 @@ const AddNewEntity = () => {
   const handleOpenDialog = () => {
     setIsOpen(true);
   };
+
   return (
     <Fragment>
       <Box>
+        <EntityTypeDropdown />
         <Button onClick={handleOpenDialog} variant="contained">
           Add New Entity
         </Button>
