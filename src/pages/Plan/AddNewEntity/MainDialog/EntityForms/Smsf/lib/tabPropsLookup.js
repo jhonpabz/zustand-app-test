@@ -1,10 +1,20 @@
-import { DetailsForm, RelationshipsForm, NotesForm } from '../components';
+import {
+  DetailsForm,
+  RelationshipsForm,
+  NotesForm,
+  MembersForm,
+} from '../components';
 
 export const tabPropsLookup = {
   details: {
     id: 'details',
     label: 'Details',
     form: DetailsForm,
+  },
+  members: {
+    id: 'members',
+    label: 'Members',
+    form: MembersForm,
   },
   relationships: {
     id: 'relationships',

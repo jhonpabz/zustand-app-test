@@ -1,1 +1,1 @@
-export * from './individualFormSchema';
+export * from './smsfEntitySchema';

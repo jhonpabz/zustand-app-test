@@ -6,7 +6,7 @@ export const NotesForm = ({ control }) => {
     <FormSection>
       <ControlledTextField
         control={control}
-        name="notes_by_user"
+        name="notes"
         multiline
         rows={8}
         label="Notes"

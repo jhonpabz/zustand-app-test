@@ -1,1 +1,1 @@
-export * from './useIndividualForm';
+export * from './useSmsfForm';

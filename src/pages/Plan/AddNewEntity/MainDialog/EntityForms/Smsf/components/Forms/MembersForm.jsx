@@ -1,31 +1,31 @@
 import { Fragment } from 'react';
 
-import { Box } from '@mui/material';
+import { Box, FormControlLabel, Typography } from '@mui/material';
 
 import ControlledTextField from '@components/ControlledInputs/ControlledTextField';
+import ControlledSwitch from '@components/ControlledInputs/ControlledSwitch';
+import ControlledDatePicker from '@components/ControlledInputs/ControlledDatePicker';
+
 import { FormSection, FormRow } from '..';
 
-export const RelationshipsForm = ({ control }) => {
+export const MembersForm = ({ control }) => {
   return (
     <Fragment>
-      <FormSection>
+      <FormSection title="Members">
         <FormRow>
-          {/* TODO: Replace with ControlledSelect */}
           <ControlledTextField
             control={control}
-            name="xpm_relationship"
-            label="XPM: Relationship Type"
+            name="members"
+            label="Members"
             fullWidth
             required
           />
 
-          {/* TODO: Replace with ControlledSelect */}
           <ControlledTextField
             control={control}
-            name="xpm_relationship_type"
-            label="Family Relationship Type"
+            name="member_status"
+            label="Members Status"
             fullWidth
-            required
           />
         </FormRow>
       </FormSection>

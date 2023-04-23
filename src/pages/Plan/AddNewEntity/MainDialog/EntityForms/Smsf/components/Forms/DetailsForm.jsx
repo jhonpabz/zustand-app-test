@@ -11,70 +11,27 @@ import { FormSection, FormRow } from '..';
 export const DetailsForm = ({ control }) => {
   return (
     <Fragment>
-      {/* Name */}
-      <FormSection title="Name">
+      <FormSection title="SMSF">
         <FormRow>
           <ControlledTextField
             control={control}
-            name="first_name"
-            label="First Name"
+            name="smsf_name"
+            label="SMSF Name"
             fullWidth
             required
           />
 
           <ControlledTextField
             control={control}
-            name="middle_name"
-            label="Middle Name"
+            name="owner_director"
+            label="Owner/Director"
             fullWidth
           />
 
           <ControlledTextField
             control={control}
-            name="last_name"
-            label="Last Name"
-            fullWidth
-            required
-          />
-        </FormRow>
-
-        <FormRow>
-          <FormControlLabel
-            control={
-              <ControlledSwitch control={control} name="is_key_person" />
-            }
-            label={
-              <Typography fontSize={14} fontWeight={400}>
-                Key Person (Leading Member)
-              </Typography>
-            }
-          />
-        </FormRow>
-      </FormSection>
-
-      {/* Address */}
-      <FormSection title="Home Address">
-        <FormRow>
-          <ControlledTextField
-            control={control}
-            name="street"
-            label="Street"
-            fullWidth
-            required
-          />
-
-          <ControlledTextField
-            control={control}
-            name="suburb"
-            label="Suburb"
-            fullWidth
-            required
-          />
-
-          <ControlledTextField
-            control={control}
-            name="city"
-            label="City"
+            name="abn"
+            label="ABN"
             fullWidth
             required
           />
@@ -83,55 +40,24 @@ export const DetailsForm = ({ control }) => {
         <FormRow>
           <ControlledTextField
             control={control}
-            name="state"
-            label="State"
+            name="total_balance"
+            label="Total Balance"
             fullWidth
             required
           />
 
           <ControlledTextField
             control={control}
-            name="post_code"
-            label="Post Code"
+            name="status"
+            label="Status"
             fullWidth
             required
           />
 
-          <ControlledTextField
-            control={control}
-            name="country"
-            label="Country"
-            fullWidth
-            required
-          />
-        </FormRow>
-      </FormSection>
-
-      {/* Personal Details */}
-      <FormSection title="Personal Information">
-        <FormRow>
           <ControlledDatePicker
             control={control}
-            name="dob"
-            label="Date of Birthday"
-            fullWidth
-            required
-          />
-
-          {/* TODO: Replace with ControlledSelect */}
-          <ControlledTextField
-            control={control}
-            name="gender"
-            label="Gender"
-            fullWidth
-            required
-          />
-
-          {/* TODO: Replace with ControlledSelect */}
-          <ControlledTextField
-            control={control}
-            name="marital_status"
-            label="Marital Status"
+            name="as_at_date"
+            label="Date"
             fullWidth
             required
           />
@@ -140,62 +66,11 @@ export const DetailsForm = ({ control }) => {
         <FormRow>
           <ControlledTextField
             control={control}
-            name="email"
-            label="Email Address"
+            name="notes_by"
+            label="Notes By"
             fullWidth
             required
           />
-
-          {/* TODO: Replace with ControlledSelect */}
-          <ControlledTextField
-            control={control}
-            name="risk_type"
-            label="Risk Type"
-            fullWidth
-            required
-          />
-          <Box width="100%" />
-        </FormRow>
-
-        <FormRow>
-          <Box width="100%">
-            <FormControlLabel
-              control={
-                <ControlledSwitch control={control} name="is_existing_client" />
-              }
-              label={
-                <Typography fontSize={14} fontWeight={400}>
-                  Existing Client
-                </Typography>
-              }
-            />
-          </Box>
-
-          <Box width="100%">
-            <FormControlLabel
-              control={
-                <ControlledSwitch control={control} name="is_au_resident" />
-              }
-              label={
-                <Typography fontSize={14} fontWeight={400}>
-                  Australian Resident
-                </Typography>
-              }
-            />
-          </Box>
-
-          <Box width="100%" display="flex" alignItems="center">
-            <FormControlLabel
-              control={
-                <ControlledSwitch control={control} name="is_family_member" />
-              }
-              label={
-                <Typography fontSize={14} fontWeight={400}>
-                  Family Member
-                </Typography>
-              }
-            />
-          </Box>
         </FormRow>
       </FormSection>
     </Fragment>

@@ -11,14 +11,33 @@ import LoadingButton from '@mui/lab/LoadingButton';
 
 import { Title, Dialog, DialogTitle, DialogContent } from './Reusable';
 import { tabPropsLookup } from './lib';
-import { useIndividualForm } from './hooks';
+import { useSmsfForm } from './hooks';
 
-const Smsf = ({ data = [], open = false, onClose }) => {
+const Smsf = ({
+  data = {
+    abn: 'asdf',
+    as_at_date: '22/12/12',
+    member_balance: '234123',
+    member_status: 'asdf',
+    members: 'asdf',
+    notes: 'asdf',
+    notes_by: 'asdf',
+    owner_director: 'asdf',
+    smsf_name: 'asdf',
+    status: 'asdf',
+    total_balance: '1234',
+    xpm_relationship: 'asdf',
+    xpm_relationship_type: 'asdf',
+  },
+
+  open = false,
+  onClose,
+}) => {
   const dialogRef = useRef(null);
   const [currentTab, setCurrentTab] = useState(tabPropsLookup.details);
   const [rootData, setRootData] = useState(data);
 
-  const formHook = useIndividualForm(rootData);
+  const formHook = useSmsfForm(rootData);
   const Form = currentTab.form;
 
   let timer;
@@ -40,6 +59,7 @@ const Smsf = ({ data = [], open = false, onClose }) => {
   };
 
   const handleChangeTabs = (_, newValue) => {
+    console.log('handleChangeTabs');
     formHook.handleSubmit((formData) => {
       handleChangeRootData(formData);
       setCurrentTab(tabPropsLookup[newValue]);
@@ -74,7 +94,7 @@ const Smsf = ({ data = [], open = false, onClose }) => {
       </DialogTitle>
 
       <DialogContent>
-        <Title>SMSF</Title>
+        <Title>Add New Entity - SMSF</Title>
         <Form control={formHook.control} />
       </DialogContent>
 
