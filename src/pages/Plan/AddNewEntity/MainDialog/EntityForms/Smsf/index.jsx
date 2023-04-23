@@ -15,19 +15,19 @@ import { useSmsfForm } from './hooks';
 
 const Smsf = ({
   data = {
-    abn: 'asdf',
+    abn: 'test',
     as_at_date: '22/12/12',
-    member_balance: '234123',
-    member_status: 'asdf',
-    members: 'asdf',
-    notes: 'asdf',
-    notes_by: 'asdf',
-    owner_director: 'asdf',
-    smsf_name: 'asdf',
-    status: 'asdf',
-    total_balance: '1234',
-    xpm_relationship: 'asdf',
-    xpm_relationship_type: 'asdf',
+    member_balance: '111',
+    member_status: 'test',
+    members: 'test',
+    notes: 'test',
+    notes_by: 'test',
+    owner_director: 'test',
+    smsf_name: 'test',
+    status: 'test',
+    total_balance: '1111',
+    xpm_relationship: 'test',
+    xpm_relationship_type: 'test',
   },
 
   open = false,
@@ -59,7 +59,7 @@ const Smsf = ({
   };
 
   const handleChangeTabs = (_, newValue) => {
-    console.log('handleChangeTabs');
+    console.log('rootData: ', rootData);
     formHook.handleSubmit((formData) => {
       handleChangeRootData(formData);
       setCurrentTab(tabPropsLookup[newValue]);
@@ -74,7 +74,9 @@ const Smsf = ({
 
   const handleSubmit = () => {
     formHook.handleSubmit((data) => {
+      console.log('data: ', data);
       const _dataForUpdate = { ...rootData, ...data };
+      console.log('_dataForUpdate: ', _dataForUpdate);
       // TODO: Mutation function here
     })();
   };

@@ -27,6 +27,13 @@ export const MembersForm = ({ control }) => {
             label="Members Status"
             fullWidth
           />
+
+          <ControlledTextField
+            control={control}
+            name="member_balance"
+            label="Member Balance"
+            fullWidth
+          />
         </FormRow>
       </FormSection>
     </Fragment>
