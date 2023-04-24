@@ -15,7 +15,9 @@ import { useSmsfForm } from './hooks';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { ErrorMessage } from '@hookform/error-message';
 import { useCurrentSchemaStore } from './stores';
+import { smsfEntitySchema } from './schema';
 
 const Smsf = ({
   data = {
@@ -47,9 +49,12 @@ const Smsf = ({
 
   // const schema = tabPropsLookup(currentTab);
   // console.log(schema, 'schema');
+  const {
+    formState: { errors },
+  } = useSmsfForm();
 
-  console.log('currentTab: ', currentTab.id);
   const formHook = useSmsfForm();
+
   const Form = currentTab.form;
 
   let timer;
@@ -73,11 +78,10 @@ const Smsf = ({
   const handleChangeTabs = (_, newValue) => {
     formHook.handleSubmit(
       (formData) => {
-        console.log('formData', formData);
         // handleChangeRootData(formData);
         setCurrentTab(tabPropsLookup[newValue]);
-      },
-      (err) => console.log(err, 'err')
+      }
+      // (err) => console.log(err, 'err')
     )();
   };
 
@@ -90,13 +94,11 @@ const Smsf = ({
   useEffect(() => {
     setSchema(currentTab.schema);
   }, [currentTab]);
-  // const baseUrl = import.meta.env.VITE_API_BASE_URL;
+
   const useAddSmsfEntityMutation = useMutation({
     mutationFn: async (formData) => {
-      return await axios.post(
-        'http://127.0.0.1:8000/api/smsf-details',
-        formData
-      );
+      const baseUrl = import.meta.env.VITE_API_BASE_URL;
+      return await axios.post(baseUrl + '/api/smsf-details', formData);
     },
     onSuccess: () => {
       console.log('SMSF Entity is successfully created.');
@@ -113,16 +115,30 @@ const Smsf = ({
     error,
     data: SmsfData,
   } = useAddSmsfEntityMutation;
-  console.log('error: ', error?.response?.data?.message);
-  console.log('error2: ', error);
 
   const handleSubmit = () => {
-    formHook.handleSubmit((data) => {
-      // const _dataForUpdate = { ...rootData, ...data };
-      console.log('data: ', data);
-      // Mutation function here
-      useAddSmsfEntityMutation.mutate(data);
-    })();
+    setSchema(smsfEntitySchema);
+
+    setTimeout(() => {
+      const membersError = formHook.formState?.errors?.members?.message;
+      const relationshipsError =
+        formHook.formState?.errors?.xpm_relationship?.message;
+      const notessError = formHook.formState?.errors?.notes?.message;
+
+      if (membersError?.length > 0) {
+        setCurrentTab(tabPropsLookup.members);
+      } else if (relationshipsError?.length > 0) {
+        setCurrentTab(tabPropsLookup.relationships);
+      } else if (notessError?.length > 0) {
+        setCurrentTab(tabPropsLookup.notes);
+      }
+      formHook.handleSubmit((data) => {
+        // const _dataForUpdate = { ...rootData, ...data };
+        console.log('data', data);
+        // Mutation function here
+        useAddSmsfEntityMutation.mutate(data);
+      })();
+    }, 200);
   };
   return (
     <Fragment>
@@ -147,7 +163,7 @@ const Smsf = ({
       <DialogActions>
         <Button
           variant="cancel"
-          //   disabled={isLoading}
+          disabled={isLoading}
           onClick={handleClose}
           sx={{ minWidth: '100px' }}
         >
@@ -156,7 +172,7 @@ const Smsf = ({
 
         <LoadingButton
           onClick={handleSubmit}
-          //   loading={isLoading}
+          loading={isLoading}
           variant="contained"
           loadingIndicator={<CircularProgress size={24} color="inherit" />}
           sx={{ minWidth: '100px' }}

@@ -1,9 +1,8 @@
 import { useRef } from 'react';
 
-import { Dialog, Typography, Box } from '@mui/material';
+import { Dialog, Box } from '@mui/material';
 import { useEntityTypeStore } from '../stores';
 import EntityTypeDropdown from '../components/EntityTypeDropdown';
-import Smsf from './EntityForms/Smsf';
 import { selectedEntityLookup } from '../lib';
 
 const MainDialog = ({ open, onClose }) => {

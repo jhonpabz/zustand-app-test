@@ -35,6 +35,6 @@ export const tabPropsLookup = {
     id: 'notes',
     label: 'Notes',
     form: NotesForm,
-    schema: smsfDetailsSchema,
+    schema: smsfEntitySchema,
   },
 };
