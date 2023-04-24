@@ -15,32 +15,41 @@ import { useSmsfForm } from './hooks';
 
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useCurrentSchemaStore } from './stores';
 
 const Smsf = ({
   data = {
-    abn: 'test',
-    as_at_date: '22/12/12',
-    member_balance: '111',
-    member_status: 'test',
-    members: 'test',
-    notes: 'test',
-    notes_by: 'test',
-    owner_director: 'test',
-    smsf_name: 'test',
-    status: 'test',
-    total_balance: '1111',
-    xpm_relationship: 'test',
-    xpm_relationship_type: 'test',
+    // abn: 'asdfa',
+    // as_at_date: 'asdfS',
+    // member_balance: 'asdf',
+    // member_status: 'asdf',
+    // members: 'asdf',
+    // notes: 'asdf',
+    // notes_by: 'asdf',
+    // owner_director: 'asdf',
+    // smsf_name: 'asdf',
+    // status: 'asdf',
+    // total_balance: 'asdfasd',
+    // xpm_relationship: 'asdf',
+    // xpm_relationship_type: 'asdf',
   },
 
   open = false,
   onClose,
 }) => {
-  const dialogRef = useRef(null);
+  const setSchema = useCurrentSchemaStore((state) => state.setSchema);
+  const { schema } = useCurrentSchemaStore((state) => ({
+    schema: state.schema,
+  }));
+  // const dialogRef = useRef(null);
   const [currentTab, setCurrentTab] = useState(tabPropsLookup.details);
   const [rootData, setRootData] = useState(data);
 
-  const formHook = useSmsfForm(rootData);
+  // const schema = tabPropsLookup(currentTab);
+  // console.log(schema, 'schema');
+
+  console.log('currentTab: ', currentTab.id);
+  const formHook = useSmsfForm();
   const Form = currentTab.form;
 
   let timer;
@@ -57,16 +66,19 @@ const Smsf = ({
     onClose();
   };
 
-  const handleChangeRootData = (newPartialData) => {
-    setRootData((previousData) => ({ ...previousData, ...newPartialData }));
-  };
+  // const handleChangeRootData = (newPartialData) => {
+  //   setRootData((previousData) => ({ ...previousData, ...newPartialData }));
+  // };
 
   const handleChangeTabs = (_, newValue) => {
-    console.log('rootData: ', rootData);
-    formHook.handleSubmit((formData) => {
-      handleChangeRootData(formData);
-      setCurrentTab(tabPropsLookup[newValue]);
-    })();
+    formHook.handleSubmit(
+      (formData) => {
+        console.log('formData', formData);
+        // handleChangeRootData(formData);
+        setCurrentTab(tabPropsLookup[newValue]);
+      },
+      (err) => console.log(err, 'err')
+    )();
   };
 
   useEffect(() => {
@@ -75,22 +87,41 @@ const Smsf = ({
     };
   });
 
+  useEffect(() => {
+    setSchema(currentTab.schema);
+  }, [currentTab]);
+  // const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const useAddSmsfEntityMutation = useMutation({
     mutationFn: async (formData) => {
-      const baseUrl = import.meta.env.VITE_API_BASE_URL;
-      return await axios.post(baseUrl + '/api/smsf-details', formData);
+      return await axios.post(
+        'http://127.0.0.1:8000/api/smsf-details',
+        formData
+      );
     },
     onSuccess: () => {
       console.log('SMSF Entity is successfully created.');
     },
+    onError: () => {
+      console.log('SMSF ERRRRRRRRRRRRROR.');
+    },
   });
+
+  const {
+    isSuccess,
+    isLoading,
+    isError,
+    error,
+    data: SmsfData,
+  } = useAddSmsfEntityMutation;
+  console.log('error: ', error?.response?.data?.message);
+  console.log('error2: ', error);
 
   const handleSubmit = () => {
     formHook.handleSubmit((data) => {
-      const _dataForUpdate = { ...rootData, ...data };
-      console.log('_dataForUpdate: ', _dataForUpdate);
+      // const _dataForUpdate = { ...rootData, ...data };
+      console.log('data: ', data);
       // Mutation function here
-      useAddSmsfEntityMutation.mutate(_dataForUpdate);
+      useAddSmsfEntityMutation.mutate(data);
     })();
   };
   return (
